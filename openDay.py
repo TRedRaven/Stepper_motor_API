@@ -64,7 +64,7 @@ class motor():
                     for pin in range(len(self.pins)):
                         print pin
                         io.output(self.pins[:-1][pin], self.activations[:-1][activation][pin])
-                    time.sleep(0.001
+                    time.sleep(0.001)
         # truning right
         else:
             for i in range(abs(turn)):
