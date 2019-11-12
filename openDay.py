@@ -60,14 +60,14 @@ class motor():
             for i in range(abs(turn)):
                 for activation in range(len(self.activations)):
                     for pin in range(len(self.pins)):
-                        io.output(self.pins[-1][pin], self.activations[::-1][activation][pin])
+                        io.output(self.pins[pin], self.activations[::-1][activation][pin])
                     time.sleep(0.001)
         # truning right
         else:
             for i in range(abs(turn)):
                 for activation in range(len(self.activations)):
                     for pin in range(len(self.pins)):
-                        io.output(self.pins[-1][pin], self.activations[-1][activation][pin])
+                        io.output(self.pins[pin], self.activations[activation][pin])
                     time.sleep(0.001)
 
         # turning the pins off so the motor doesn't burn to a crisp
