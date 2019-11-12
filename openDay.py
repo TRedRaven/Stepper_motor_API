@@ -1,5 +1,6 @@
 #! /usr/bin/env python3.8
-# import RPi.GPIO as io
+
+import RPi.GPIO as io
 import numpy as np
 
 class motor():
@@ -18,6 +19,22 @@ class motor():
         """setter takes array like[int, int, int, int]"""
         self._pins = value
 
+    @property
+    def activations(self):
+        """this will contain the activations of the pins"""
+        if hasattr(self, "_activations"):
+            return self._activations
+        self._activations = [
+            [1,0,0,0],
+            [1,1,0,0],
+            [0,1,0,0],
+            [0,1,1,0],
+            [0,0,1,0],
+            [0,0,1,1],
+            [0,0,0,1],
+            [1,0,0,1]
+        ]
+        return self._activations
 
     def setup(self):
         """this will setup the pins set in """
@@ -32,9 +49,12 @@ class motor():
     def spin(self, amount=360):
         """this will spin the motor by the given degree"""
         degree = (amount * 100 / 360) * 0.01
-
-
-
+        turn = 512 * degree
+        if turn < 0:
+            for i in range(turn):
+                for activation in range(len(self.activations)):
+                    for pin in range(len(self.pins)):
+                        io.output(self.pins[pin], self.activations[activation][pin])
 
 if __name__ == "__main__":
     mot = motor()
