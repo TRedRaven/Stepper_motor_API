@@ -5,6 +5,10 @@ import numpy as np
 
 class motor():
     """this is the motor class this will allow control of any connected stepper motors."""
+
+    def __init__(self):
+        io.setmode(io.BOARD)
+
     @property
     def pins(self):
         """pins property, what pins have you connected to the pi"""
@@ -39,7 +43,7 @@ class motor():
     def setup(self):
         """this will setup the pins set in """
         for pin in self.pins:
-            io.setup(pin, io.OUTPUT)
+            io.setup(pin, io.OUT)
             io.output(pin, 0)
 
     def clean(self):
