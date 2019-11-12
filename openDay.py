@@ -53,7 +53,9 @@ class motor():
     def spin(self, amount=360):
         """this will spin the motor by the given degree"""
         degree = (amount * 100 / 360) * 0.01
+        print degree
         turn = 512 * degree
+        print turn
         for i in range(turn):
             for activation in range(len(self.activations)):
                 for pin in range(len(self.pins)):
@@ -62,4 +64,4 @@ class motor():
 
 if __name__ == "__main__":
     mot = motor()
-    mot.spin
+    mot.spin()
