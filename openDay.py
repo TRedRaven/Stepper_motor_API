@@ -55,13 +55,24 @@ class motor():
         """this will spin the motor by the given degree"""
         degree = (amount * 100 / 360) * 0.01
         print degree
-        turn = 512 * degree
+        turn = int(512 * degree)
         print turn
-        for i in range(int(turn)):
-            for activation in range(len(self.activations)):
-                for pin in range(len(self.pins)):
-                    io.output(self.pins[pin], self.activations[activation][pin])
-                time.sleep(0.001)
+        if turn < 0:
+            for i in range(abs(turn)):
+                for activation in range(len(self.activations)):
+                    for pin in range(len(self.pins)):
+                        io.output(self.pins[:-1][pin], self.activations[:-1][activation][pin])
+                    time.sleep(0.001)
+        else:
+            for i in range(abs(turn)):
+                for activation in range(len(self.activations)):
+                    for pin in range(len(self.pins)):
+                        io.output(self.pins[pin], self.activations[activation][pin])
+                    time.sleep(0.001)
+        # turning the 
+        for pin in self.pins:
+            io.output(pin, 0)
+
 
 if __name__ == "__main__":
     mot = motor()
