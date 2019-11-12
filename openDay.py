@@ -59,17 +59,17 @@ class motor():
         if turn < 0:
             for i in range(abs(turn)):
                 print i
-                for activation in range(len(self.activations)):
+                for activation in range(len(self.activations)-1):
                     print activation
-                    for pin in range(len(self.pins)):
+                    for pin in range(len(self.pins)-1):
                         print pin
                         io.output(self.pins[:-1][pin], self.activations[:-1][activation][pin])
                     time.sleep(0.001)
         # truning right
         else:
             for i in range(abs(turn)):
-                for activation in range(len(self.activations)):
-                    for pin in range(len(self.pins)):
+                for activation in range(len(self.activations)-1):
+                    for pin in range(len(self.pins)-1):
                         io.output(self.pins[pin], self.activations[activation][pin])
                     time.sleep(0.001)
 
