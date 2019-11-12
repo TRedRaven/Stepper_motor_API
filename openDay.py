@@ -2,6 +2,7 @@
 
 import RPi.GPIO as io
 import numpy as np
+import time
 
 class motor():
     """this is the motor class this will allow control of any connected stepper motors."""
@@ -60,7 +61,7 @@ class motor():
             for activation in range(len(self.activations)):
                 for pin in range(len(self.pins)):
                     io.output(self.pins[pin], self.activations[activation][pin])
-
+                time.sleep(0.001)
 
 if __name__ == "__main__":
     mot = motor()
