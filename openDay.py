@@ -56,7 +56,7 @@ class motor():
         print degree
         turn = 512 * degree
         print turn
-        for i in range(turn):
+        for i in range(int(turn)):
             for activation in range(len(self.activations)):
                 for pin in range(len(self.pins)):
                     io.output(self.pins[pin], self.activations[activation][pin])
