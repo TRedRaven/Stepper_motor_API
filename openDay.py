@@ -64,4 +64,5 @@ class motor():
 
 if __name__ == "__main__":
     mot = motor()
+    mot.setup()
     mot.spin()
