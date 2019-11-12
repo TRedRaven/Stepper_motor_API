@@ -54,22 +54,26 @@ class motor():
     def spin(self, amount=360):
         """this will spin the motor by the given degree"""
         degree = (amount * 100 / 360) * 0.01
-        print degree
         turn = int(512 * degree)
-        print turn
+        # turning left
         if turn < 0:
             for i in range(abs(turn)):
+                print i
                 for activation in range(len(self.activations)):
+                    print activation
                     for pin in range(len(self.pins)):
+                        print pin
                         io.output(self.pins[:-1][pin], self.activations[:-1][activation][pin])
-                    time.sleep(0.001)
+                    time.sleep(0.001
+        # truning right
         else:
             for i in range(abs(turn)):
                 for activation in range(len(self.activations)):
                     for pin in range(len(self.pins)):
                         io.output(self.pins[pin], self.activations[activation][pin])
                     time.sleep(0.001)
-        # turning the 
+
+        # turning the pins off so the motor doesn't burn to a crisp
         for pin in self.pins:
             io.output(pin, 0)
 
