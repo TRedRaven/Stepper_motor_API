@@ -51,7 +51,7 @@ class motor():
         """just a easy way to call the cleanup method of RPi.GPIO"""
         io.cleanup()
 
-    def spin(self, amount=360, speed=100):
+    def spin(self, amount=360):
         """this will spin the motor by the given degree"""
         degree = (amount * 100 / 360) * 0.01
         turn = int(512 * degree)
@@ -61,14 +61,14 @@ class motor():
                 for activation in range(len(self.activations)):
                     for pin in range(len(self.pins)):
                         io.output(self.pins[pin], self.activations[::-1][activation][pin])
-                    time.sleep(1 - speed * 0.001)
+                    time.sleep(0.01)
         # truning right
         else:
             for i in range(abs(turn)):
                 for activation in range(len(self.activations)):
                     for pin in range(len(self.pins)):
                         io.output(self.pins[pin], self.activations[activation][pin])
-                    time.sleep(1 - speed * 0.001)
+                    time.sleep(0.01)
 
         # turning the pins off so the motor doesn't burn to a crisp
         for pin in self.pins:
